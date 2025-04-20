@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nginx-dev
+  namespace: dev
+spec:
+  interval: 1m
+  releaseName: nginx-dev
+  chart:
+    spec:
+      chart: ./charts/nginx-dev
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+      interval: 1m
+  values:
+    service:
+      type: LoadBalancer
