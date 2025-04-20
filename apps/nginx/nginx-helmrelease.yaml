@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-      version: "11.0.0" # Check https://artifacthub.io/packages/helm/bitnami/nginx for latest
+      version: "17.0.2" # Check https://artifacthub.io/packages/helm/bitnami/nginx for latest
   values:
     service:
       type: LoadBalancer
