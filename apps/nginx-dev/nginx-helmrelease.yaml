@@ -15,5 +15,9 @@ spec:
         namespace: flux-system
       interval: 1m
   values:
+    image:
+      repository: nginx
+      tag: "1.25.3"   # 👈 Change tag or values
+    replicaCount: 2
     service:
       type: LoadBalancer
