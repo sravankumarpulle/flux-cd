@@ -4,4 +4,4 @@ resources:
   - flux-system
   - ../../apps/nginx
   - ../../apps/nginx-dev
-  - ../../apps/nginx-ingress
+  # - ../../apps/nginx-ingress
