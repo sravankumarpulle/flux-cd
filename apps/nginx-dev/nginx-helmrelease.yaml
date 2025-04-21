@@ -43,17 +43,8 @@ spec:
   values:
     image:
       repository: nginx
-      tag: "1.25.3"               # 🔄 Update if needed
+      tag: "1.25.3"
     replicaCount: 1
     service:
       type: ClusterIP
       port: 80
-    ingress:
-      enabled: true
-      ingressClassName: kong      # 🚀 Using Kong Ingress Controller
-      annotations:
-        konghq.com/strip-path: "true"
-      hosts:
-        - host: kong-econ-test.southindia.cloudapp.azure.com # 🔁 Replace with actual domain or nip.io
-          paths:
-            - /
