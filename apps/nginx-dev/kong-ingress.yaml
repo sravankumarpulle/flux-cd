@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-dev-kong
+  namespace: dev
+  annotations:
+    konghq.com/strip-path: "true"
+    konghq.com/override: "nginx-dev-override"  # Optional for rate limits etc.
+spec:
+  ingressClassName: kong
+  rules:
+  - host: kong-econ-test.southindia.cloudapp.azure.com   # 👈 You can use nip.io or real domain
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-dev
+            port:
+              number: 80

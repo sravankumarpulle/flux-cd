@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - nginx-helmrelease.yaml
+  - kong-ingress.yaml

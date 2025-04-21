@@ -1,3 +1,29 @@
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: nginx-dev
+#   namespace: dev
+# spec:
+#   interval: 1m
+#   releaseName: nginx-dev
+#   chart:
+#     spec:
+#       chart: ./charts/nginx-dev
+#       sourceRef:
+#         kind: GitRepository
+#         name: flux-system
+#         namespace: flux-system
+#       interval: 1m
+#   values:
+#     image:
+#       repository: nginx
+#       tag: "1.25.3"   # 👈 Change tag or values
+#     replicaCount: 1
+#     service:
+#       type: LoadBalancer
+
+
+# updated with kong configuration
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -17,7 +43,17 @@ spec:
   values:
     image:
       repository: nginx
-      tag: "1.25.3"   # 👈 Change tag or values
+      tag: "1.25.3"               # 🔄 Update if needed
     replicaCount: 1
     service:
-      type: LoadBalancer
+      type: ClusterIP
+      port: 80
+    ingress:
+      enabled: true
+      ingressClassName: kong      # 🚀 Using Kong Ingress Controller
+      annotations:
+        konghq.com/strip-path: "true"
+      hosts:
+        - host: kong-econ-test.southindia.cloudapp.azure.com # 🔁 Replace with actual domain or nip.io
+          paths:
+            - /
