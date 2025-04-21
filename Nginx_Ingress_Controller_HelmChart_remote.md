@@ -1,8 +1,8 @@
-Absolutely Sravan! Here's a clear and professional `README.md` for your **FluxCD GitOps NGINX Ingress Controller** setup using a **remote Helm chart repo** on **Azure AKS**.
+**FluxCD GitOps NGINX Ingress Controller** setup using a **remote Helm chart repo** on **Azure AKS**.
 
 ---
 
-## 📘 `README.md` – Deploy NGINX Ingress Controller with FluxCD on AKS
+## 📘 Deploy NGINX Ingress Controller with FluxCD on AKS
 
 This PoC demonstrates deploying the **NGINX Ingress Controller** using **FluxCD GitOps** and the **official Helm chart** from a **remote Helm repository** on an **Azure Kubernetes Service (AKS)** cluster.
 
@@ -15,6 +15,7 @@ This PoC demonstrates deploying the **NGINX Ingress Controller** using **FluxCD 
 - HelmRelease managed by FluxCD
 - LoadBalancer service for Azure public IP exposure
 - GitOps-driven deployment using branch: `flux-helm-repos`
+- Helm chart version `4.10.0` is used — you can check other versions on [ArtifactHub](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx)
 
 ---
 
