@@ -18,6 +18,6 @@ spec:
     image:
       repository: nginx
       tag: "1.25.3"   # 👈 Change tag or values
-    replicaCount: 2
+    replicaCount: 1
     service:
       type: LoadBalancer
