@@ -1,3 +1,27 @@
+# # public loadbalancer
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: kong
+#   namespace: kong
+# spec:
+#   interval: 1m
+#   releaseName: kong
+#   chart:
+#     spec:
+#       chart: kong
+#       version: "2.37.0"  # 🔍 Check latest: https://artifacthub.io/packages/helm/kong/kong
+#       sourceRef:
+#         kind: HelmRepository
+#         name: kong
+#         namespace: flux-system
+#   values:
+#     ingressController:
+#       enabled: true
+#     proxy:
+#       type: LoadBalancer
+
+# private loadbalancer within Vnet 
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -17,5 +41,15 @@ spec:
   values:
     ingressController:
       enabled: true
+
     proxy:
       type: LoadBalancer
+      annotations:
+        # 👉 Azure-specific annotation for internal LB
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+      http:
+        enabled: true
+        servicePort: 80
+      tls:
+        enabled: true
+        servicePort: 443
