@@ -56,6 +56,7 @@ spec:
 ### 3️⃣ `apps/kong/helmrelease.yaml`
 
 ```yaml
+# Type Loadbalancer Automatically Public ip address created In Azure Portal
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -77,6 +78,41 @@ spec:
       enabled: true
     proxy:
       type: LoadBalancer
+
+# Loadbalancer  type Automatically Private ip address created inside Azure Vnet Configuration below
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kong
+  namespace: kong
+spec:
+  interval: 1m
+  releaseName: kong
+  chart:
+    spec:
+      chart: kong
+      version: "2.37.0"  # 🔍 Check latest: https://artifacthub.io/packages/helm/kong/kong
+      sourceRef:
+        kind: HelmRepository
+        name: kong
+        namespace: flux-system
+  values:
+    ingressController:
+      enabled: true
+
+    proxy:
+      type: LoadBalancer
+      annotations:
+        # 👉 Azure-specific annotation for internal LB
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+      http:
+        enabled: true
+        servicePort: 80
+      tls:
+        enabled: true
+        servicePort: 443
+
+
 ```
 
 > ☝️ You can modify `proxy.type` to `ClusterIP` or `NodePort` if not using a public LB.
