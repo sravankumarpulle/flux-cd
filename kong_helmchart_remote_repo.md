@@ -116,6 +116,9 @@ spec:
 ```
 
 > ☝️ You can modify `proxy.type` to `ClusterIP` or `NodePort` if not using a public LB.
+![image](https://github.com/user-attachments/assets/3f102b37-30cc-4722-82b2-23ec736b8f08)
+
+
 
 ---
 
