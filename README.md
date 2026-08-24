@@ -7,3 +7,20 @@
   #### Step 6: Bootstrap FluxCD with GitHub
 
 ## 2. (flux-k8s-multi-env) branch contains multi env and namespaces default and prod with k8s yaml files poc
+
+---------------------------------------
+# Fluxcd Installation on Kuberenetes cluster 
+## Prerequiresets install Helm cli
+
+```
+helm repo add fluxcd-community https://fluxcd-community.github.io/helm-charts
+helm repo list
+helm repo update
+kubectl create ns flux-system
+helm install fluxcd fluxcd-community/flux2 -n flux-system   # wait for few mins if case doesn't work execute below upgrade command 
+helm list -n flux-system
+helm status fluxcd -n flux-system
+kubectl get pods -n flux-system
+helm upgrade fluxcd fluxcd-community/flux2 -n flux-system
+kubectl get pods -n flux-system
+```
